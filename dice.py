@@ -27,22 +27,25 @@ class DiceGUI():
         self.root.title('Dices')
         self.root.resizable(False, False)
 
-        self.frame_cmd = tk.Frame(self.root, bg='white')
-        self.button = tk.Button(self.frame_cmd, cursor='hand2', activebackground='green',
+        # Input
+        self.label_minutes = tk.Label(text='Time for Backup (Minutes): ', height=2)
+        self.spinbox_minutes = tk.Spinbox(from_=1, to=100, width=5)
+        self.label_minutes.grid(row=0, column=1, sticky=tk.W)
+
+        # Roll button command
+        self.button = tk.Button(cursor='hand2', activebackground='green',
             font='bold 16',text="Roll", command=self.roll)
         self.button.grid(row=1, padx=20, pady=10)
 
-        self.frame_res = tk.Frame(self.root, bg='white')
+        # Dice output
         self.label_res = tk.StringVar(value="Results")
-        self.label = tk.Label( self.frame_res, textvariable=self.label_res)
+        self.label = tk.Label( textvariable=self.label_res)
         self.label.grid(row=1, sticky=tk.E)
 
         self.label_dice_output = tk.StringVar()
-        self.label = tk.Label( self.frame_res, textvariable=self.label_dice_output)
+        self.label = tk.Label( textvariable=self.label_dice_output)
         self.label.grid(row=1, column=1, sticky=tk.W)
 
-        self.frame_res.pack(side=tk.TOP)
-        self.frame_cmd.pack(side=tk.BOTTOM)
         self.root.mainloop()
 
     def roll(self):
