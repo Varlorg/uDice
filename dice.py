@@ -99,10 +99,10 @@ class DiceGUI():
         self.string_dice_output.set(" - ".join([ '{nb:0>{max_len}}'.format(nb=dd, max_len=digit_len) for dd in resuls ]))
 
 def diceInteractive():
-    raw_side = input("Enter the number of sides of the dice : ")
+    raw_side = input("Enter the number of sides of the dice (6): ") or "6"
     try:
         d = Dice(int(raw_side))
-        raw_throw = input("Enter the number dice throws : ")
+        raw_throw = input("Enter the number dice throws (1): ") or "1"
         print("Results : ", d.roll(int(raw_throw)))
     except:
         print("Error to perform dice rolling")
@@ -117,9 +117,9 @@ if __name__== '__main__':
     parser.add_argument("-i", "--interactive", action="store_true",
                     help='Launch CLI interface')
     parser.add_argument("-t", "--throws", default=1, type=int,
-                    help='Number the dice rolls')
+                        help='Number the dice rolls (default: 1)')
     parser.add_argument("-s", "--sides", default=6, type=int,
-                    help='Number of sides of the dice')
+                        help='Number of sides of the dice (default: 6)')
 
     args = parser.parse_args()
 
